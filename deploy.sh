@@ -32,7 +32,8 @@ rm -rf "$DEPLOY_DIR"
 mkdir -p "$DEPLOY_DIR"
 
 # Copiar archivos de configuración
-cp Dockerfile docker-compose.yml package.json package-lock.json "$DEPLOY_DIR/" 2>/dev/null || true
+cp Dockerfile.offline "$DEPLOY_DIR/Dockerfile"
+cp docker-compose.yml package.json package-lock.json "$DEPLOY_DIR/" 2>/dev/null || true
 
 # Copiar standalone output (server.js, node_modules, etc.)
 cp -r .next/standalone/portfolio-2026/* "$DEPLOY_DIR/"
