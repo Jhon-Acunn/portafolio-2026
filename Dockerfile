@@ -29,10 +29,11 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# Copiar standalone output desde builder
-COPY --from=builder /app/.next/standalone ./
+# Copiar el contenido de standalone/portfolio-2026/ directamente a la raíz
+# Next.js genera: .next/standalone/<project-name>/
+COPY --from=builder /app/.next/standalone/portfolio-2026/ ./
 
-# Copiar assets estáticos
+# Copiar assets estáticos (necesarios aparte en Next.js standalone)
 COPY --from=builder /app/.next/static ./.next/static
 
 # Copiar archivos públicos
@@ -56,5 +57,5 @@ ENV HOSTNAME=0.0.0.0
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
     CMD node -e "const http = require('http'); http.get('http://localhost:3000', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
 
-# Iniciar servidor (Next.js standalone crea un subdirectorio con el nombre del proyecto)
-CMD ["node", "portfolio-2026/server.js"]
+# Iniciar servidor (server.js está en la raíz)
+CMD ["node", "server.js"]
