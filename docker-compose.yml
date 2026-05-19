@@ -8,21 +8,17 @@ services:
     container_name: portfolio-2026
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3002:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
       - HOSTNAME=0.0.0.0
-    # Optional: Add your env vars here if needed
-    # env_file:
-    #   - .env.production
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      test: ["CMD", "node", "-e", "const http = require('http'); http.get('http://localhost:3000', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
       interval: 30s
       timeout: 3s
       retries: 3
       start_period: 10s
-    # Optional: Add labels for Portainer stack management
     labels:
       - "app=portfolio-2026"
       - "environment=production"
