@@ -37,7 +37,7 @@ const PERSONAL = {
     "With a deep passion for clean architecture and elegant design, I transform complex problems into simple, beautiful solutions.",
   ],
   email: "hello@jhonacunn.dev",
-  github: "https://github.com/jhonacunn",
+  github: "https://github.com/Jhon-Acunn",
   linkedin: "https://linkedin.com/in/jhonacunn",
 };
 
@@ -905,7 +905,7 @@ function ContactSection() {
                   <div>
                     <div className="text-xs text-zinc-500 tracking-wide">GitHub</div>
                     <div className="text-sm text-zinc-300 group-hover:text-white transition-colors duration-300">
-                      @jhonacunn
+                      @Jhon-Acunn
                     </div>
                   </div>
                 </a>
