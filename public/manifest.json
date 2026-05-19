@@ -1,0 +1,24 @@
+{
+  "name": "Jhonacunn — Full-Stack Developer",
+  "short_name": "Jhonacunn",
+  "description": "Full-stack developer portfolio — crafting digital experiences at the intersection of design and engineering.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07090D",
+  "theme_color": "#07090D",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "development", "technology"]
+}
