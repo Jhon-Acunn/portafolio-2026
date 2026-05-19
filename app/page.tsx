@@ -162,11 +162,22 @@ const IconArrowUp = ({ className = "w-4 h-4" }: { className?: string }) => (
 function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const { scrollYProgress } = useScrollProgress();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 20);
+      if (currentY > 80) {
+        setHidden(currentY > lastScrollY.current);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -198,6 +209,8 @@ function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      } ${
         scrolled
           ? "bg-black/60 backdrop-blur-xl border-b border-white/[0.06]"
           : "bg-transparent"
