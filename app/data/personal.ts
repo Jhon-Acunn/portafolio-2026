@@ -1,11 +1,11 @@
 export const PERSONAL = {
   name: "Jhonacunn",
-  role: "Full-Stack Developer",
+  role: "Desarrollador Full-Stack",
   headline:
-    "I build resilient systems and human-centric interfaces with modern web technologies.",
+    "Construyo sistemas resilientes e interfaces centradas en el ser humano con tecnologías web modernas.",
   about: [
-    "I architect and build high-performance full-stack applications, from API gateways handling 10k+ RPS to pixel-perfect React interfaces. My work combines systems thinking with a maniacal focus on user experience.",
-    "Previously led frontend infrastructure at a fast-growing startup, cutting bundle size by 40% and improving LCP by 35%. Passionate about developer experience, type safety, and writing code that doesn't embarrass you at 3 AM.",
+    "Arquitecto y construyo aplicaciones full-stack de alto rendimiento, desde API gateways que manejan 10k+ RPS hasta interfaces React perfectas al píxel. Mi trabajo combina pensamiento sistémico con un enfoque maniático en la experiencia de usuario.",
+    "Anteriormente lideré infraestructura frontend en una startup de rápido crecimiento, reduciendo el tamaño del bundle en un 40% y mejorando el LCP en un 35%. Apasionado por la experiencia del desarrollador, la seguridad de tipos y escribir código del que no te avergüences a las 3 AM.",
   ],
   email: "hello@jhonacunn.dev",
   github: "https://github.com/Jhon-Acunn",

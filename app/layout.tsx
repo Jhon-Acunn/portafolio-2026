@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     template: "%s | Jhonacunn",
   },
   description:
-    "Crafting digital experiences at the intersection of design and engineering. Full-Stack Developer specializing in React, Next.js, and modern web technologies.",
+    "Creando experiencias digitales en la intersección del diseño y la ingeniería. Desarrollador Full-Stack especializado en React, Next.js y tecnologías web modernas.",
   keywords: [
-    "Full-Stack Developer",
+    "Desarrollador Full-Stack",
     "React",
     "Next.js",
     "TypeScript",
@@ -37,16 +37,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Jhonacunn Portfolio",
-    title: "Jhonacunn | Full-Stack Developer",
+    siteName: "Portafolio de Jhonacunn",
+    title: "Jhonacunn | Desarrollador Full-Stack",
     description:
-      "Crafting digital experiences at the intersection of design and engineering.",
+      "Creando experiencias digitales en la intersección del diseño y la ingeniería.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jhonacunn | Full-Stack Developer",
+    title: "Jhonacunn | Desarrollador Full-Stack",
     description:
-      "Crafting digital experiences at the intersection of design and engineering.",
+      "Creando experiencias digitales en la intersección del diseño y la ingeniería.",
   },
   icons: {
     icon: [
@@ -104,7 +104,7 @@ export default function RootLayout({
               mainEntity: {
                 "@type": "Person",
                 name: "Jhonacunn",
-                jobTitle: "Full-Stack Developer",
+                jobTitle: "Desarrollador Full-Stack",
                 url: "https://jhonacunn.dev",
                 sameAs: [
                   "https://github.com/Jhon-Acunn",
