@@ -21,14 +21,14 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 const STORAGE_KEY = "portfolio-locale";
 
 function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return "en";
+  if (typeof window === "undefined") return "es";
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === "en" || stored === "es") return stored;
   } catch {
     // localStorage unavailable
   }
-  return "en";
+  return "es";
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
