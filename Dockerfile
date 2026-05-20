@@ -15,7 +15,7 @@ RUN addgroup --system --gid 1001 nodejs && \
 COPY package.json package-lock.json ./
 
 # Instalar TODAS las dependencias (incluye dev)
-RUN npm ci
+RUN npm install --no-audit --no-fund
 
 # Copiar el resto del código fuente
 COPY . .
@@ -24,7 +24,7 @@ COPY . .
 RUN npm run build
 
 # Eliminar devDependencies para reducir tamaño
-RUN npm prune --production
+RUN npm prune --production --no-audit --no-fund
 
 # Permisos
 RUN chown -R nextjs:nodejs /app
