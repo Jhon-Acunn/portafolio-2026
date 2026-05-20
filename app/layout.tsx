@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
+import { LanguageProvider } from "@/app/providers/LanguageProvider";
 import { Analytics } from "@/app/components/analytics/Analytics";
 import "./globals.css";
 
@@ -123,8 +124,10 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ThemeProvider>
-          <Analytics />
-          {children}
+          <LanguageProvider>
+            <Analytics />
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

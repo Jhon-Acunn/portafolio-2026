@@ -1,17 +1,22 @@
+"use client";
+
 import type { Project } from "@/app/data/projects";
+import { useLanguage } from "@/app/providers/LanguageProvider";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const { t } = useLanguage();
+
   return (
     <a
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
       className="group block stagger-item"
-      aria-label={`View project: ${project.title}`}
+      aria-label={t("project.viewAria", { title: project.title })}
     >
       <div className="relative overflow-hidden rounded-xl border border-subtle bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-[var(--border-hover)]">
         {/* Image area */}

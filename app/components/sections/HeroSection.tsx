@@ -4,6 +4,7 @@ import { useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { PERSONAL } from "@/app/data/personal";
 import { IconGitHub } from "@/app/components/icons/IconGitHub";
+import { useLanguage } from "@/app/providers/LanguageProvider";
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -23,6 +24,7 @@ const staggerItem = {
 };
 
 export function HeroSection() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
@@ -137,7 +139,7 @@ export function HeroSection() {
             whileTap={{ scale: 0.98 }}
             className="group relative px-8 py-3.5 rounded-full bg-accent text-[var(--accent-foreground)] font-medium text-sm tracking-wide overflow-hidden"
           >
-            <span className="relative z-10">Get in Touch</span>
+            <span className="relative z-10">{t("hero.getInTouch")}</span>
             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
             <div className="absolute -inset-2 bg-[#00D4FF] blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
           </motion.button>
@@ -149,11 +151,11 @@ export function HeroSection() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="group px-8 py-3.5 rounded-full border border-default text-secondary font-medium text-sm tracking-wide hover:border-accent/30 hover:text-primary transition-all duration-300"
-            aria-label={`View ${PERSONAL.name} on GitHub`}
+            aria-label={t("hero.githubAria", { name: PERSONAL.name })}
           >
             <span className="flex items-center gap-2">
               <IconGitHub className="w-4 h-4" />
-              View GitHub
+              {t("hero.viewGitHub")}
             </span>
           </motion.a>
         </motion.div>

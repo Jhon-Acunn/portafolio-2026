@@ -1,22 +1,34 @@
+"use client";
+
 import { AnimatedSection } from "@/app/components/ui/AnimatedSection";
 import { PERSONAL } from "@/app/data/personal";
+import { useLanguage } from "@/app/providers/LanguageProvider";
 
 export function AboutSection() {
+  const { t } = useLanguage();
+
   return (
     <AnimatedSection id="about" className="relative py-24 md:py-32 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div className="mb-4">
           <span className="text-xs tracking-[0.2em] uppercase text-accent">
-            About
+            {t("about.label")}
           </span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight text-primary mb-8">
-              Passionate about building{" "}
-              <span className="text-accent">exceptional</span> digital
-              experiences
+              {(() => {
+                const parts = t("about.heading").split(t("about.headingHighlight"));
+                return (
+                  <>
+                    {parts[0]}
+                    <span className="text-accent">{t("about.headingHighlight")}</span>
+                    {parts[1]}
+                  </>
+                );
+              })()}
             </h2>
 
             {PERSONAL.about.map((paragraph, i) => (
@@ -30,9 +42,9 @@ export function AboutSection() {
 
             <div className="flex gap-8 md:gap-12 mt-10 pt-10 border-t border-subtle">
               {[
-                { value: "3+", label: "Years Exp." },
-                { value: "15+", label: "Projects" },
-                { value: "10+", label: "Technologies" },
+                { value: "3+", label: t("about.statYears") },
+                { value: "15+", label: t("about.statProjects") },
+                { value: "10+", label: t("about.statTechnologies") },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div className="text-2xl md:text-3xl font-medium text-primary">
@@ -49,16 +61,16 @@ export function AboutSection() {
           <div className="flex flex-col justify-center">
             <div className="p-8 rounded-2xl border border-subtle bg-surface">
               <h3 className="text-sm font-medium text-primary mb-6 tracking-wide">
-                Core Competencies
+                {t("about.competencies")}
               </h3>
               <div className="flex flex-wrap gap-3">
                 {[
-                  "UI/UX Design",
-                  "Frontend Engineering",
-                  "Backend Architecture",
-                  "System Design",
-                  "Performance Optimization",
-                  "Developer Experience",
+                  t("about.skillUIUX"),
+                  t("about.skillFrontend"),
+                  t("about.skillBackend"),
+                  t("about.skillSystem"),
+                  t("about.skillPerformance"),
+                  t("about.skillDX"),
                 ].map((skill) => (
                   <span
                     key={skill}
@@ -72,7 +84,7 @@ export function AboutSection() {
               <div className="mt-8 pt-6 border-t border-subtle">
                 <div className="flex items-center gap-3 text-xs text-tertiary">
                   <span className="w-2 h-2 rounded-full bg-accent" />
-                  Always exploring new frontiers
+                  {t("about.tagline")}
                 </div>
               </div>
             </div>

@@ -7,6 +7,7 @@ import { IconGitHub } from "@/app/components/icons/IconGitHub";
 import { IconLinkedIn } from "@/app/components/icons/IconLinkedIn";
 import { PERSONAL } from "@/app/data/personal";
 import { AnimatedSection } from "@/app/components/ui/AnimatedSection";
+import { useLanguage } from "@/app/providers/LanguageProvider";
 
 const formVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -18,6 +19,7 @@ const formVariants = {
 };
 
 export function ContactSection() {
+  const { t } = useLanguage();
   const [formState, setFormState] = useState<
     "idle" | "sending" | "sent" | "error"
   >("idle");
@@ -49,33 +51,32 @@ export function ContactSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="mb-4">
           <span className="text-xs tracking-[0.2em] uppercase text-accent">
-            Connect
+            {t("contact.label")}
           </span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight text-primary mb-16">
-          Get in Touch
+          {t("contact.heading")}
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
           {/* Left — Contact Info */}
           <div className="space-y-8">
             <p className="text-secondary leading-relaxed font-light">
-              Have a project in mind or just want to say hello? I&apos;m always
-              open to discussing new opportunities.
+              {t("contact.intro")}
             </p>
 
             <div className="space-y-4">
               <a
                 href={`mailto:${PERSONAL.email}`}
                 className="group flex items-center gap-4 p-4 rounded-xl border border-subtle hover:border-accent/20 transition-all duration-300"
-                aria-label={`Send email to ${PERSONAL.email}`}
+                aria-label={t("contact.emailAria", { email: PERSONAL.email })}
               >
                 <div className="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center group-hover:bg-[var(--accent-surface)] transition-colors duration-300">
                   <IconMail className="w-4 h-4 text-tertiary group-hover:text-accent transition-colors duration-300" />
                 </div>
                 <div>
-                  <div className="text-xs text-tertiary tracking-wide">Email</div>
+                  <div className="text-xs text-tertiary tracking-wide">{t("contact.email")}</div>
                   <div className="text-sm text-secondary group-hover:text-primary transition-colors duration-300">
                     {PERSONAL.email}
                   </div>
@@ -87,13 +88,13 @@ export function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 p-4 rounded-xl border border-subtle hover:border-accent/20 transition-all duration-300"
-                aria-label={`View ${PERSONAL.name} on GitHub`}
+                aria-label={t("contact.githubAria", { name: PERSONAL.name })}
               >
                 <div className="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center group-hover:bg-[var(--accent-surface)] transition-colors duration-300">
                   <IconGitHub className="w-4 h-4 text-tertiary group-hover:text-accent transition-colors duration-300" />
                 </div>
                 <div>
-                  <div className="text-xs text-tertiary tracking-wide">GitHub</div>
+                  <div className="text-xs text-tertiary tracking-wide">{t("contact.github")}</div>
                   <div className="text-sm text-secondary group-hover:text-primary transition-colors duration-300">
                     @Jhon-Acunn
                   </div>
@@ -105,13 +106,13 @@ export function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 p-4 rounded-xl border border-subtle hover:border-accent/20 transition-all duration-300"
-                aria-label={`View ${PERSONAL.name} on LinkedIn`}
+                aria-label={t("contact.linkedinAria", { name: PERSONAL.name })}
               >
                 <div className="w-10 h-10 rounded-lg bg-elevated flex items-center justify-center group-hover:bg-[var(--accent-surface)] transition-colors duration-300">
                   <IconLinkedIn className="w-4 h-4 text-tertiary group-hover:text-accent transition-colors duration-300" />
                 </div>
                 <div>
-                  <div className="text-xs text-tertiary tracking-wide">LinkedIn</div>
+                  <div className="text-xs text-tertiary tracking-wide">{t("contact.linkedin")}</div>
                   <div className="text-sm text-secondary group-hover:text-primary transition-colors duration-300">
                     /in/jhonacunn
                   </div>
@@ -138,15 +139,15 @@ export function ContactSection() {
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-medium text-primary mb-2">Message Sent!</h3>
+                  <h3 className="text-xl font-medium text-primary mb-2">{t("contact.sentTitle")}</h3>
                   <p className="text-secondary text-sm font-light text-center">
-                    Thank you for reaching out. I&apos;ll get back to you soon.
+                    {t("contact.sentText")}
                   </p>
                   <button
                     onClick={() => setFormState("idle")}
                     className="mt-6 text-xs text-tertiary hover:text-primary transition-colors"
                   >
-                    Send another message
+                    {t("contact.sendAnother")}
                   </button>
                 </motion.div>
               ) : (
@@ -162,24 +163,24 @@ export function ContactSection() {
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label htmlFor="name" className="sr-only">Name</label>
+                      <label htmlFor="name" className="sr-only">{t("contact.formName")}</label>
                       <input
                         id="name"
                         name="name"
                         type="text"
-                        placeholder="Name"
+                        placeholder={t("contact.formName")}
                         required
                         aria-required="true"
                         className="w-full px-5 py-3.5 rounded-xl bg-surface border border-default text-primary text-sm placeholder:text-muted focus:outline-none focus:border-accent/30 focus:bg-[var(--accent-surface)] transition-all duration-300"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="sr-only">Email</label>
+                      <label htmlFor="email" className="sr-only">{t("contact.formEmail")}</label>
                       <input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="Email"
+                        placeholder={t("contact.formEmail")}
                         required
                         aria-required="true"
                         className="w-full px-5 py-3.5 rounded-xl bg-surface border border-default text-primary text-sm placeholder:text-muted focus:outline-none focus:border-accent/30 focus:bg-[var(--accent-surface)] transition-all duration-300"
@@ -187,12 +188,12 @@ export function ContactSection() {
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="message" className="sr-only">Message</label>
+                    <label htmlFor="message" className="sr-only">{t("contact.formMessage")}</label>
                     <textarea
                       id="message"
                       name="message"
                       rows={5}
-                      placeholder="Your message..."
+                      placeholder={t("contact.formMessage")}
                       required
                       aria-required="true"
                       className="w-full px-5 py-3.5 rounded-xl bg-surface border border-default text-primary text-sm placeholder:text-muted focus:outline-none focus:border-accent/30 focus:bg-[var(--accent-surface)] transition-all duration-300 resize-none"
@@ -201,7 +202,7 @@ export function ContactSection() {
 
                   {formState === "error" && (
                     <div className="text-sm text-red-400 bg-red-400/10 px-4 py-3 rounded-lg" role="alert">
-                      Something went wrong. Please try again or email me directly.
+                      {t("contact.error")}
                     </div>
                   )}
 
@@ -213,7 +214,7 @@ export function ContactSection() {
                     className="group relative w-full px-8 py-3.5 rounded-xl bg-accent text-[var(--accent-foreground)] font-medium text-sm tracking-wide overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span className="relative z-10">
-                      {formState === "sending" ? "Sending..." : "Send Message"}
+                      {formState === "sending" ? t("contact.sending") : t("contact.send")}
                     </span>
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </motion.button>

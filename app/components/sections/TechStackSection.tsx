@@ -1,5 +1,8 @@
+"use client";
+
 import { TECH_STACK } from "@/app/data/tech-stack";
 import { AnimatedSection } from "@/app/components/ui/AnimatedSection";
+import { useLanguage } from "@/app/providers/LanguageProvider";
 
 function hexToRgba(hex: string, alpha: number): string {
   const r = Number.parseInt(hex.slice(1, 3), 16);
@@ -9,6 +12,8 @@ function hexToRgba(hex: string, alpha: number): string {
 }
 
 export function TechStackSection() {
+  const { t } = useLanguage();
+
   return (
     <AnimatedSection
       id="skills"
@@ -19,12 +24,12 @@ export function TechStackSection() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="mb-4">
           <span className="text-xs tracking-[0.2em] uppercase text-accent">
-            Expertise
+            {t("stack.label")}
           </span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight text-primary mb-16">
-          Tech Stack
+          {t("stack.heading")}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 stagger-children">

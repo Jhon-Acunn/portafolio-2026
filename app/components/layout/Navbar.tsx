@@ -5,9 +5,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NAV_ITEMS } from "@/app/data/navigation";
 import { PERSONAL } from "@/app/data/personal";
 import { useScrollProgress } from "@/app/hooks/useScrollProgress";
+import { useLanguage } from "@/app/providers/LanguageProvider";
 import { ThemeToggle } from "@/app/components/ui/ThemeToggle";
+import { LanguageToggle } from "@/app/components/ui/LanguageToggle";
+
+const navTranslationKeys: Record<string, string> = {
+  "#about": "nav.about",
+  "#skills": "nav.skills",
+  "#projects": "nav.projects",
+  "#learning": "nav.learning",
+  "#contact": "nav.contact",
+};
 
 export function Navbar() {
+  const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -83,12 +94,12 @@ export function Navbar() {
             window.scrollTo({ top: 0, behavior: "smooth" })
           }
           className="text-base font-medium tracking-tight text-primary hover:text-accent transition-colors"
-          aria-label="Scroll to top"
+          aria-label={t("nav.scrollToTop")}
         >
           {PERSONAL.name}
         </button>
 
-        {/* Desktop nav + theme toggle */}
+        {/* Desktop nav + toggles */}
         <div className="hidden md:flex items-center gap-6">
           {NAV_ITEMS.map((item) => (
             <button
@@ -103,7 +114,7 @@ export function Navbar() {
                   : "text-[var(--text-tertiary)] hover:text-[var(--text-primary)]"
               }`}
             >
-              {item.label}
+              {t(navTranslationKeys[item.href])}
               {activeSection === item.href && (
                 <motion.div
                   layoutId="nav-indicator"
@@ -118,17 +129,21 @@ export function Navbar() {
             </button>
           ))}
           <div className="w-px h-5 bg-[var(--border-subtle)]" />
+          <LanguageToggle />
           <ThemeToggle />
         </div>
 
-        {/* Mobile: hamburger + theme */}
+        {/* Mobile: hamburger + toggles */}
         <div className="md:hidden flex items-center gap-2">
+          <LanguageToggle />
           <ThemeToggle />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2 relative z-50"
             aria-label={
-              mobileOpen ? "Close navigation menu" : "Open navigation menu"
+              mobileOpen
+                ? t("nav.closeMenu")
+                : t("nav.openMenu")
             }
             aria-expanded={mobileOpen}
           >
@@ -182,7 +197,7 @@ export function Navbar() {
                       : "text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)]"
                   }`}
                 >
-                  {item.label}
+                  {t(navTranslationKeys[item.href])}
                 </button>
               ))}
             </div>
